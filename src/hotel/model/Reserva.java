@@ -1,6 +1,6 @@
 package hotel.model;
 import java.time.LocalDate;
-import java.util.List;
+import java.util.List; //importaciones
 
 public class Reserva {
     private int id;
@@ -8,7 +8,7 @@ public class Reserva {
     private Cliente cliente;
     private LocalDate CheckIn;
     private LocalDate CheckOut;
-    private double PrecioTotal;
+    private double PrecioTotal; 
 
     public Reserva(int id, Habitacion habitacion, Cliente cliente, LocalDate checkIn, LocalDate checkOut) {
         this.id = id;
