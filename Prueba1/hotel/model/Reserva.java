@@ -1,9 +1,8 @@
 package hotel.model;
-
 import java.time.LocalDate;
 import java.util.List; //importaciones
 
-import hotel.controller.ReservaController;
+
 
 public class Reserva {
     private int id;
@@ -20,10 +19,6 @@ public class Reserva {
         this.CheckIn = checkIn;
         this.CheckOut = checkOut;
         this.PrecioTotal = 0;
-    }
-
-    public void calcularPrecioTotal(ReservaController reservaController) {
-        this.PrecioTotal = ReservaController.PrecioTotal(this);
     }
 
     public int getId() {
@@ -74,4 +69,3 @@ public class Reserva {
         PrecioTotal = precioTotal;
     }
 }
-
