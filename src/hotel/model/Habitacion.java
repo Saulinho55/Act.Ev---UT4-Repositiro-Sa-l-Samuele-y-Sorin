@@ -1,11 +1,7 @@
 package hotel.model;
-
-enum EstadoHabitacion {
-    OCUPADA, DISPONIBLE, RESERVADA
-}
-enum TipoHabitacion {
-    INDIVIDUAL, DOBLE, SUITE
-}
+import hotel.model.EstadoHabitacion;
+import hotel.model.TipoHabitacion;
+import hotel.model.TipoHabitacion.Tipo;
 public class Habitacion {
     private int numero;
     private TipoHabitacion tipo;
@@ -22,7 +18,7 @@ public class Habitacion {
     }
 
     private void PrecioTipoHabitacion(TipoHabitacion tipo) {
-        switch (tipo) {
+        switch (Tipo) {
             case INDIVIDUAL:
                 PrecioNoche = 50;
                 break;
