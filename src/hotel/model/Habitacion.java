@@ -2,6 +2,8 @@ package hotel.model;
 import hotel.model.EstadoHabitacion;
 import hotel.model.TipoHabitacion;
 import hotel.model.TipoHabitacion.Tipo;
+
+
 public class Habitacion {
     private int numero;
     private TipoHabitacion tipo;
@@ -18,7 +20,7 @@ public class Habitacion {
     }
 
     private void PrecioTipoHabitacion(TipoHabitacion tipo) {
-        switch (Tipo) {
+        switch (tipo) {
             case INDIVIDUAL:
                 PrecioNoche = 50;
                 break;
