@@ -1,6 +1,5 @@
 package hotel.controller;
 
-<<<<<<< HEAD
 import hotel.model.Reserva;
 import hotel.model.Cliente;
 import hotel.model.Habitacion;
@@ -52,4 +51,5 @@ public class ReservaController {
         long dias = java.time.temporal.ChronoUnit.DAYS.between(reserva.getCheckIn(), reserva.getCheckOut());
         return reserva.getHabitacion().getPrecioNoche() * dias;
     }
-}}
+}
+
