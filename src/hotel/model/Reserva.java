@@ -17,7 +17,11 @@ public class Reserva {
         this.cliente = cliente;
         this.CheckIn = checkIn;
         this.CheckOut = checkOut;
-        this.PrecioTotal = PrecioTotal();
+        this.PrecioTotal = 0;
+    }
+
+    public void calcularPrecioTotal(ReservaController reservaController) {
+        this.PrecioTotal = reservaController.PrecioTotal(this);
     }
 
     public int getId() {
