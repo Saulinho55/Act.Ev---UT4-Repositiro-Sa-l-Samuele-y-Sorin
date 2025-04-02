@@ -1,12 +1,13 @@
 package hotel.controller;
-
 import hotel.model.Reserva;
 import hotel.model.Cliente;
 import hotel.model.Habitacion;
+import hotel.controller.HabitacionController;
+import hotel.model.Habitacion.EstadoHabitacion;
 import hotel.model.excepciones.ReservaNoDisponibleException;
 import hotel.model.excepciones.ClienteNoEncontradoException;
-
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,19 +21,29 @@ public class ReservaController {
         if (reserva.getCheckIn().isBefore(LocalDate.now())) {
             throw new ReservaNoDisponibleException("No se pueden realizar reservas en fechas pasadas.");
         }
-
+        if (reserva.getCheckOut().isBefore(reserva.getCheckIn())) {
+            throw new ReservaNoDisponibleException("El check-out no puede ser antes del check-in.");
+        }
+        if (!HabitacionController.Disponibilidad(reserva.getHabitacion(), reserva.getCheckIn(), reserva.getCheckOut(), reservas)) {
+            throw new ReservaNoDisponibleException("La habitación ya está reservada en ese rango de fechas.");
+        }
         Cliente cliente = reserva.getCliente();
         long reservasActivas = 0;
         for (Reserva reservas : reservas) {
             if (reservas.getCliente().equals(cliente) && reservas.getCheckOut().isAfter(LocalDate.now())) {
                 reservasActivas++;
+                PrecioTotal(reserva);
             }
+        }
+        long diasReserva = ChronoUnit.DAYS.between(reserva.getCheckIn(), reserva.getCheckOut());
+        if (diasReserva > 90) {
+            throw new ReservaNoDisponibleException("Error. EL maximo de dias de reserva es 90.");
         }
         if (reservasActivas >= 3) {
             throw new ReservaNoDisponibleException("El cliente no puede tener más de 3 reservas activas.");
         }
-
         reservas.add(reserva);
+        reserva.getHabitacion().setEstado(EstadoHabitacion.RESERVADA); //Poner en reservado la habitación
         System.out.println("Reserva creada correctamente.");
     }
     public void cancelarReserva(Reserva reserva) {
@@ -43,12 +54,22 @@ public class ReservaController {
         if (!reservas.contains(reserva)) {
             throw new ClienteNoEncontradoException("La reserva no existe.");
         }
-
         reservas.remove(reserva);
+        HabitacionController.ActualizarCancelacion(reserva.getHabitacion()); //Actualizar la habitación a disponible
         System.out.println("Reserva cancelada correctamente.");
     }
     public double PrecioTotal(Reserva reserva) {
         long dias = java.time.temporal.ChronoUnit.DAYS.between(reserva.getCheckIn(), reserva.getCheckOut());
         return reserva.getHabitacion().getPrecioNoche() * dias;
+    }
+    public void Check(Reserva reserva) {
+        if (reserva.getCheckIn().isBefore(LocalDate.now())) {
+            throw new ReservaNoDisponibleException("No se puede realizar el check-in al haber pasado la fecha.");
+        }
+        if (!reservas.contains(reserva)) {
+            throw new ClienteNoEncontradoException("La reserva no existe");
+        }
+        System.out.println("Fue realizado correctamente");
+        reserva.getHabitacion().setEstado(EstadoHabitacion.OCUPADA);
     }
 }

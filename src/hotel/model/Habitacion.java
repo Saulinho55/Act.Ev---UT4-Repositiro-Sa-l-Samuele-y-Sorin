@@ -1,22 +1,21 @@
 package hotel.model;
 
- enum EstadoHabitacion {
-    OCUPADA,
-    DISPONIBLE,
-    RESERVADA
-}
- enum TipoHabitacion {
-    INDIVIDUAL,
-    DOBLE,
-    SUITE
-}
 public class Habitacion {
+    public enum EstadoHabitacion {
+        OCUPADA,
+        DISPONIBLE,
+        RESERVADA
+    }
+     public enum TipoHabitacion {
+        INDIVIDUAL,
+        DOBLE,
+        SUITE
+    }
     private int numero;
     private TipoHabitacion tipo;
     private EstadoHabitacion estado;
     private String descripcion;
     private double PrecioNoche;
-
 
     public Habitacion(int numero, TipoHabitacion tipo, EstadoHabitacion estado, String descripcion, double precioNoche) {
         this.numero = numero;
