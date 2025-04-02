@@ -1,5 +1,5 @@
 package hotel.controller;
 
-public class ReservaController {
+public class ClienteController {
     
 }

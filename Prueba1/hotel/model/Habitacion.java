@@ -5,17 +5,6 @@ import hotel.model.TipoHabitacion;
 import hotel.model.TipoHabitacion.Tipo;
 
 public class Habitacion {
-    public enum Tipo {
-        INDIVIDUAL,
-        DOBLE,
-        SUITE
-    }
-    public enum EstadoHabitacion {
-        DISPONIBLE,
-        OCUPADA,
-        LIMPIEZA
-    }
-
     private int Numero;
     private TipoHabitacion Tipo;
     private EstadoHabitacion Estado;
@@ -89,5 +78,4 @@ public class Habitacion {
     public void setPrecioNoche(double PrecioNoche) {
         this.PrecioNoche = PrecioNoche;
     }
-
 }
