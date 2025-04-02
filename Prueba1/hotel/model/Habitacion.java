@@ -1,42 +1,29 @@
 package hotel.model;
 
+import hotel.model.EstadoHabitacion;
+import hotel.model.TipoHabitacion;
+import hotel.model.TipoHabitacion.Tipo;
+
 public class Habitacion {
-
-    public enum Tipo {
-        INDIVIDUAL,
-        DOBLE,
-        SUITE
-    }
-
-    public enum EstadoHabitacion {
-        DISPONIBLE,
-        OCUPADA,
-        LIMPIEZA
-    }
-
     private int Numero;
-    private Tipo Tipo;
+    private TipoHabitacion Tipo;
     private EstadoHabitacion Estado;
     private String Descripcion;
     private double PrecioNoche;
 
-    public Habitacion(int Numero, Tipo Tipo, String Descripcion) {
-        if (Tipo == null) {
-            throw new IllegalArgumentException("El tipo de habitación no puede ser nulo");
-        }
-        if (Descripcion == null || Descripcion.isEmpty()) {
-            throw new IllegalArgumentException("La descripción no puede ser nula o vacía");
-        }
-
+    public Habitacion(int Numero, TipoHabitacion Tipo, String Descripcion) {
         this.Numero = Numero;
         this.Tipo = Tipo;
-        this.Estado = EstadoHabitacion.DISPONIBLE;
+        this.Estado = EstadoHabitacion.DISPONIBLE; 
         this.Descripcion = Descripcion;
-        establecerPrecioPorTipo(Tipo);
+        PrecioTipoHabitacion(Tipo);
     }
 
-    private void establecerPrecioPorTipo(Tipo Tipo) {
-        switch (Tipo) {
+    private void PrecioTipoHabitacion(TipoHabitacion Tipo) {
+        if (Tipo == null || Tipo.getTipo() == null) {
+            throw new IllegalArgumentException("El tipo de habitación no puede ser nulo");
+        }
+        switch (Tipo.getTipo()) { 
             case INDIVIDUAL:
                 this.PrecioNoche = 50;
                 break;
@@ -59,16 +46,13 @@ public class Habitacion {
         this.Numero = Numero;
     }
 
-    public Tipo getTipo() {
+    public TipoHabitacion getTipo() {
         return Tipo;
     }
 
-    public void setTipo(Tipo Tipo) {
-        if (Tipo == null) {
-            throw new IllegalArgumentException("El tipo de habitación no puede ser nulo");
-        }
+    public void setTipo(TipoHabitacion Tipo) {
         this.Tipo = Tipo;
-        establecerPrecioPorTipo(Tipo); // Actualiza el precio al cambiar el tipo
+        PrecioTipoHabitacion(Tipo); 
     }
 
     public EstadoHabitacion getEstado() {
@@ -84,9 +68,6 @@ public class Habitacion {
     }
 
     public void setDescripcion(String Descripcion) {
-        if (Descripcion == null || Descripcion.isEmpty()) {
-            throw new IllegalArgumentException("La descripción no puede ser nula o vacía");
-        }
         this.Descripcion = Descripcion;
     }
 
@@ -95,9 +76,6 @@ public class Habitacion {
     }
 
     public void setPrecioNoche(double PrecioNoche) {
-        if (PrecioNoche < 0) {
-            throw new IllegalArgumentException("El precio por noche no puede ser negativo");
-        }
         this.PrecioNoche = PrecioNoche;
     }
 }
