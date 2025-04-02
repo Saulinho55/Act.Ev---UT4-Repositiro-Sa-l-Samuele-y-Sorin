@@ -47,26 +47,5 @@ public class Cliente {
         this.reservasactivas = reservasactivas;
     }
 
-    public boolean reservasmax () {
-        return reservasactivas.size() <3;
-    }
-
-    public void addReserva(String reserva) {
-        if (reservasmax()) {
-            reservas.add(reserva);
-            reservasactivas.add(reserva);
-        } else {
-            System.out.println("Error. No se pueden añadir mas reservas activas");
-        }
-    }
-
-    public void FinalizarReserva(String reserva) {
-        if (reservasactivas.contains(reserva)) {
-            reservasactivas.remove(reserva);
-            reservas.add(reserva);
-        } else {
-            System.out.println("Error. No se puede finalizar");
-        }
-    }
 }
 

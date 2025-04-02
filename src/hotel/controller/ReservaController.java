@@ -72,4 +72,22 @@ public class ReservaController {
         System.out.println("Fue realizado correctamente");
         reserva.getHabitacion().setEstado(EstadoHabitacion.OCUPADA);
     }
+    public List<Reserva> ReservasActivasClientes(Cliente cliente) {
+        List<Reserva> ReservasActivas = new ArrayList<>();
+        for (Reserva reserva : reservas) {
+            if (reserva.getCliente().equals(cliente) && reserva.getCheckOut().isAfter(LocalDate.now())) {
+                ReservasActivas.add(reserva);
+            }
+        }
+        return ReservasActivas;
+    }
+    public List<Reserva> HistorialReservas(Cliente cliente) {
+        List<Reserva> ReservasLista = new ArrayList<>();
+        for (Reserva reserva : reservas) {
+            if (reserva.getCliente().equals(cliente)) {
+                ReservasLista.add(reserva);
+            }
+        }
+        return ReservasLista;
+    }
 }
