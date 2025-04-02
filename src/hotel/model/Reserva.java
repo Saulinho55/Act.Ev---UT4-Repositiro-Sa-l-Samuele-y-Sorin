@@ -1,5 +1,6 @@
 package hotel.model;
 import java.time.LocalDate;
+import hotel.controller.ReservaController;
 import java.util.List;
 
 public class Reserva {
@@ -19,14 +20,6 @@ public class Reserva {
         this.PrecioTotal = PrecioTotal();
     }
 
-    private double PrecioTotal() {
-        long dias = CheckIn.until(CheckOut).getDays();
-        if (dias > 90) {
-            System.out.println("Error. No puede exceder 90 dias");
-        }
-        PrecioTotal = dias * habitacion.getPrecioNoche();
-        return PrecioTotal;
-    }
     public int getId() {
         return id;
     }
