@@ -1,12 +1,12 @@
 package hotel.model;
 
 public class Habitacion {
-    public enum EstadoHabitacion {
+    public enum EstadoHabitacion { // Enum para el estado de la habitación
         OCUPADA,
         DISPONIBLE,
         RESERVADA
     }
-     public enum TipoHabitacion {
+     public enum TipoHabitacion { // Enum para el tipo de habitación
         INDIVIDUAL,
         DOBLE,
         SUITE
@@ -16,7 +16,7 @@ public class Habitacion {
     private EstadoHabitacion estado;
     private String descripcion;
     private double PrecioNoche;
-
+    // Constructor
     public Habitacion(int numero, TipoHabitacion tipo, EstadoHabitacion estado, String descripcion, double precioNoche) {
         this.numero = numero;
         this.tipo = tipo;
@@ -24,7 +24,7 @@ public class Habitacion {
         this.descripcion = descripcion;
         PrecioTipoHabitacion(tipo);
     }
-
+    // Métodos
     private void PrecioTipoHabitacion(TipoHabitacion tipo) {
         switch (tipo) {
             case INDIVIDUAL:
@@ -40,7 +40,7 @@ public class Habitacion {
                 throw new IllegalArgumentException("Tipo de habitación no válido");
         }
     }
-
+    // Getters y Setters
     public int getNumero() {
         return numero;
     }

@@ -10,7 +10,7 @@ public class Reserva {
     private LocalDate CheckIn;
     private LocalDate CheckOut;
     private double PrecioTotal;
-
+    // Constructor
     public Reserva(int id, Habitacion habitacion, Cliente cliente, LocalDate checkIn, LocalDate checkOut) {
         this.id = id;
         this.habitacion = habitacion;
@@ -19,11 +19,11 @@ public class Reserva {
         this.CheckOut = checkOut;
         this.PrecioTotal = 0;
     }
-
+    // Métodos
     public void calcularPrecioTotal(ReservaController reservaController) {
         this.PrecioTotal = reservaController.PrecioTotal(this);
     }
-
+    // Getters y Setters
     public int getId() {
         return id;
     }
