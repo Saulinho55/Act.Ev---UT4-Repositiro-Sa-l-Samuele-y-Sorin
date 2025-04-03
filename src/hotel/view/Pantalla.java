@@ -25,6 +25,7 @@ public class Pantalla {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Bienvenido al menú. Escoja la opciones siguientes:");
         do {
+            System.out.println("0. Salir");
             System.out.println("1. Reservar habitacion");
             System.out.println("2. Cancelar reserva");
             System.out.println("3. Consultar habitaciones");
@@ -36,7 +37,6 @@ public class Pantalla {
             System.out.println("9. Buscar habitación (Número)");
             System.out.println("10. Añadir cliente");
             System.out.println("11. Eliminar cliente");
-            System.out.println("0. Salir");
             System.out.println("Seleccione una opción: ");
             opcion = scanner.nextInt();
 
@@ -177,7 +177,7 @@ public class Pantalla {
         }
     }
     private void BuscarHabEstado(Scanner scanner) {
-        System.out.println("Ingrese el estado de la habitación (DISPONIBLE, OCUPADA)");
+        System.out.println("Ingrese el estado de la habitación (DISPONIBLE, OCUPADA o RESERVADA):");
         String estado = scanner.next().toUpperCase();
         EstadoHabitacion estadoHabitacion = EstadoHabitacion.valueOf(estado);
         List<Habitacion> habitaciones = habitacionController.BuscarEstado(estadoHabitacion);

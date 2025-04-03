@@ -14,13 +14,13 @@ public class Main {
     public static void main(String[] args) {
         List<Habitacion> habitaciones = new ArrayList<>();
         for (int i = 101; i <= 105; i++) {
-            habitaciones.add(new Habitacion(i, TipoHabitacion.INDIVIDUAL, EstadoHabitacion.DISPONIBLE, "Habitación estándar", 50));
+            habitaciones.add(new Habitacion(i, TipoHabitacion.INDIVIDUAL, EstadoHabitacion.DISPONIBLE, "Habitación estándar con vistas al mar", 50));
         }
         for (int i = 201; i <= 205; i++) {
-            habitaciones.add(new Habitacion(i, TipoHabitacion.DOBLE, EstadoHabitacion.DISPONIBLE, "Habitación doble", 80));
+            habitaciones.add(new Habitacion(i, TipoHabitacion.DOBLE, EstadoHabitacion.DISPONIBLE, "Habitación doble con vistas al mar", 80));
         }
         for (int i = 301; i <= 305; i++) {
-            habitaciones.add(new Habitacion(i, TipoHabitacion.SUITE, EstadoHabitacion.DISPONIBLE, "Suite de lujo", 150));
+            habitaciones.add(new Habitacion(i, TipoHabitacion.SUITE, EstadoHabitacion.DISPONIBLE, "Suite de lujo con vistas al mar", 150));
         }
         HabitacionController habitacionController = new HabitacionController(habitaciones);
         List<Cliente> clientes = new ArrayList<>();
