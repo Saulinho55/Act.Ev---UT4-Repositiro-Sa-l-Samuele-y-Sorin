@@ -23,8 +23,8 @@ public class Pantalla {
     public void Menu() {
         int opcion;
         Scanner scanner = new Scanner(System.in);
+        System.out.println("Bienvenido al menú. Escoja la opciones siguientes:");
         do {
-            System.out.println("Bienvenido al menú. Escoja la opciones siguientes:");
             System.out.println("1. Reservar habitacion");
             System.out.println("2. Cancelar reserva");
             System.out.println("3. Consultar habitaciones");
@@ -202,8 +202,12 @@ public class Pantalla {
     private void AñadirCliente(Scanner scanner) {
         System.out.println("Ingrese el nombre del cliente:");
         String nombre = scanner.next();
-        System.out.println("Ingrese el ID del cliente:");
+        System.out.println("Ingrese el ID del cliente (Número Telefonico):");
         int id = scanner.nextInt();
+        if (clienteController.BuscarCliente(id) != null) {
+            System.out.println("El cliente ya existe");
+            return;
+        }
         Cliente cliente = new Cliente(id, nombre);
         clienteController.AñadirCliente(cliente);   
     }

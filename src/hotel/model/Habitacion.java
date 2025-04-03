@@ -73,4 +73,13 @@ public class Habitacion {
     public void setPrecioNoche(double precioNoche) {
         PrecioNoche = precioNoche;
     }
+
+    public TipoHabitacion getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoHabitacion tipo) {
+        this.tipo = tipo;
+    }
 }
+
