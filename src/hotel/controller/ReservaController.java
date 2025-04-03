@@ -17,6 +17,10 @@ public class ReservaController {
     public ReservaController() {
         this.reservas = new ArrayList<>();
     }
+    private int contador = 1;
+    public int GenerarID() {
+        return contador++;
+    }
     public void AñadirReserva(Reserva reserva) {
         if (reserva.getCheckIn().isBefore(LocalDate.now())) {
             throw new ReservaNoDisponibleException("No se pueden realizar reservas en fechas pasadas.");
@@ -32,7 +36,6 @@ public class ReservaController {
         for (Reserva reservas : reservas) {
             if (reservas.getCliente().equals(cliente) && reservas.getCheckOut().isAfter(LocalDate.now())) {
                 reservasActivas++;
-                PrecioTotal(reserva);
             }
         }
         long diasReserva = ChronoUnit.DAYS.between(reserva.getCheckIn(), reserva.getCheckOut());
@@ -42,6 +45,7 @@ public class ReservaController {
         if (reservasActivas >= 3) {
             throw new ReservaNoDisponibleException("El cliente no puede tener más de 3 reservas activas.");
         }
+        reserva.setId(GenerarID());
         reservas.add(reserva);
         reserva.getHabitacion().setEstado(EstadoHabitacion.RESERVADA); //Poner en reservado la habitación
         System.out.println("Reserva creada correctamente.");
@@ -89,5 +93,22 @@ public class ReservaController {
             }
         }
         return ReservasLista;
+    }
+    public Reserva BuscarReservaPorId(int id) {
+        for (Reserva reserva : reservas) {
+            if (reserva.getId() == id) {
+                return reserva;
+            }
+        }
+        return null; 
+    }
+    public List<Reserva> BuscarReservaCliente(Cliente cliente) {
+        List<Reserva> Cliente = new ArrayList<>();
+        for (Reserva reserva : reservas) {
+            if (reserva.getCliente().equals(cliente)) {
+                Cliente.add(reserva); 
+            }
+        }
+        return Cliente; 
     }
 }
