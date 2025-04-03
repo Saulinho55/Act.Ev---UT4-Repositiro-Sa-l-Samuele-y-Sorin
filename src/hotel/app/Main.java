@@ -13,6 +13,9 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         List<Habitacion> habitaciones = new ArrayList<>();
+    public static void main(String[] args) { // Método principal
+        List<Habitacion> habitaciones = new ArrayList<>(); // Crea una lista de habitaciones
+        // Añade habitaciones a la lista
         for (int i = 101; i <= 105; i++) {
             habitaciones.add(new Habitacion(i, TipoHabitacion.INDIVIDUAL, EstadoHabitacion.DISPONIBLE, "Habitación estándar con vistas al mar", 50));
         }
@@ -24,12 +27,21 @@ public class Main {
         }
         HabitacionController habitacionController = new HabitacionController(habitaciones);
         List<Cliente> clientes = new ArrayList<>();
+        HabitacionController habitacionController = new HabitacionController(habitaciones); // Crea un controlador de habitaciones
+        List<Cliente> clientes = new ArrayList<>(); // Crea una lista de clientes
+        // Añade clientes a la lista
         clientes.add(new Cliente(678324523, "Saúl Espino Santana"));
         clientes.add(new Cliente(659087546, "Alberto Moleiro"));
         clientes.add(new Cliente(603237684, "Fernando Alonso"));
+        // Añade reservas a la lista
         List<Reserva> reservas = new ArrayList<>();
         ClienteController clienteController = new ClienteController(clientes, reservas);
         ReservaController reservaController = new ReservaController();
         Pantalla pantalla = new Pantalla(habitacionController, clienteController, reservaController);
         pantalla.Menu();}
+        ClienteController clienteController = new ClienteController(clientes, reservas); // Crea un controlador de clientes
+        ReservaController reservaController = new ReservaController(); // Crea un controlador de reservas
+        Pantalla pantalla = new Pantalla(habitacionController, clienteController, reservaController); // Crea una pantalla para mostrar el menú
+        pantalla.Menu(); // Muestra el menú
+    }
 }
